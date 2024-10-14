@@ -17,10 +17,7 @@ import java.net.URL;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -37,7 +34,16 @@ public class WeatherService {
     private static final HttpClient client = HttpClient.newHttpClient();
 
 
-    public String getWeatherAtPinCode(Long pinCode) throws IOException {
+    public String getWeatherAtPinCode(Long pinCode) throws Exception {
+
+        //checking if the weather data is already loaded in the database
+        Optional<WeatherInfo> weatherInfoOptional = weatherInfoRepository.findByPinCode(pinCode);
+        if(weatherInfoOptional.isPresent()){
+            WeatherInfo weatherInfo = weatherInfoOptional.get();
+            String result = String.valueOf(weatherInfo.getPinCode()) + "  " + weatherInfo.getLocation() + "  " + weatherInfo.getWeatherData() ;
+            result += "------>>>>>>This is cached data<<<<<<--------";
+            return result;
+        }
 
         ArrayList<PinCode> pinCodes = pinCodeService.getGeoCoordinates(pinCode);
 

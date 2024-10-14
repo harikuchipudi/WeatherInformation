@@ -9,6 +9,4 @@ import java.util.Optional;
 @Repository
 public interface PinCodeRepository extends JpaRepository<PinCode, Long> {
     Optional<PinCode> findByPinCode(Long pinCode);
-
-
 }

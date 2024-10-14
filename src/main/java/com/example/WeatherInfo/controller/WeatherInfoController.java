@@ -26,13 +26,13 @@ public class WeatherInfoController {
         return ResponseEntity.ok("Hello world");
     }
 
-    @GetMapping("/coord")
-    public ResponseEntity<ArrayList<PinCode>> getCoordinates(@RequestParam Long pin){
-        return ResponseEntity.ok(pinCodeService.getGeoCoordinates(pin));
-    }
+//    @GetMapping("/coord")
+//    public ResponseEntity<ArrayList<PinCode>> getCoordinates(@RequestParam Long pin) throws Exception {
+//        return ResponseEntity.ok(pinCodeService.getGeoCoordinates(pin));
+//    }
 
     @GetMapping("/forecast")
-    public ResponseEntity<String> getWeatherForecast(@RequestParam Long pinCode) throws IOException {
+    public ResponseEntity<String> getWeatherForecast(@RequestParam Long pinCode) throws Exception {
         return ResponseEntity.ok(weatherService.getWeatherAtPinCode(pinCode));
     }
 
