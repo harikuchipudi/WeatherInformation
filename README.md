@@ -1,4 +1,4 @@
-Weather Forecast Information Projects
+Weather Forecast Information Project
 
 Main Objective : 
 - This project results in a real time weather forecasting system which would give the weather information based on the Pincode of the location.
